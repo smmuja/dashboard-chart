@@ -1,5 +1,5 @@
 import { DashboardPage } from "@/features";
 
-export default function Home() {
+export default function Cracker() {
   return <DashboardPage />;
 }
