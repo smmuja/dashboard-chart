@@ -27,15 +27,68 @@ ChartJS.register(
   Filler
 );
 
-export function ChartComponent() {
+type ChartComponentProps = {
+  startDate?: Date;
+  endDate?: Date;
+};
+
+export function ChartComponent({ startDate, endDate }: ChartComponentProps) {
+  const startMonth = startDate
+    ? startDate.toLocaleString("default", { month: "long", year: "numeric" })
+    : undefined;
+  const endMonth = endDate
+    ? endDate.toLocaleString("default", { month: "long", year: "numeric" })
+    : undefined;
+
+  const filteredData = DatePickerData.filter((dataItem) => {
+    const formattedDataMonth = dataItem.month.toLocaleString("default", {
+      month: "long",
+      year: "numeric",
+    });
+
+    const currentIndex = DatePickerData.findIndex((item) => {
+      // Format item.month to a string for comparison
+      const formattedItemMonth = item.month.toLocaleString("default", {
+        month: "long",
+        year: "numeric",
+      });
+
+      return formattedItemMonth === formattedDataMonth; // Add this return statement
+    });
+
+    const startIndex =
+      startMonth !== undefined
+        ? DatePickerData.findIndex(
+            (item) =>
+              item.month.toLocaleString("default", {
+                month: "long",
+                year: "numeric",
+              }) === startMonth
+          )
+        : -1; // Default to -1 if startMonth is undefined
+
+    const endIndex =
+      endMonth !== undefined
+        ? DatePickerData.findIndex(
+            (item) =>
+              item.month.toLocaleString("default", {
+                month: "long",
+                year: "numeric",
+              }) === endMonth
+          )
+        : DatePickerData.length;
+
+    return currentIndex >= startIndex && currentIndex <= endIndex;
+  });
+
   // X - axis lable
-  const labels = DatePickerData.map((data) => data.month.slice(0, 3));
+
+  const labels = filteredData.map((data) => {
+    return data.month.toLocaleString("default", { month: "short" });
+  });
 
   // Data displayed on chart
-  const datasets = DatePickerData.map(
-    // (data) => data.total.toLocaleString()
-    (data) => data.total
-  );
+  const datasets = filteredData.map((data) => data.total);
 
   const data = {
     labels: labels,
