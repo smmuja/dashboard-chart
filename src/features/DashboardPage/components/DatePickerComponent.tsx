@@ -1,4 +1,5 @@
 import { DatePickerData as data } from "@/features/DashboardPage/data";
+import { formatMonthYear } from "@/utils";
 
 type DatePickerProps = {
   startDate: Date | undefined;
@@ -10,27 +11,22 @@ type DatePickerProps = {
 export function DatePickerComponent(props: DatePickerProps) {
   const { startDate, endDate, onStartDateChange, onEndDateChange } = props;
 
-  const formatDateToMonthYear = (date?: Date) =>
-    date
-      ? date.toLocaleString("default", { month: "long", year: "numeric" })
-      : "";
-
   return (
     <>
       <select
         name=""
         id=""
-        value={formatDateToMonthYear(startDate)}
+        value={formatMonthYear(startDate)}
         onChange={(e) => onStartDateChange(new Date(e.target.value))}
         className="p-3 m-3 rounded-lg"
       >
         {data.map((data) => (
           <option
-            key={formatDateToMonthYear(data.month)}
-            value={formatDateToMonthYear(data.month)}
+            key={formatMonthYear(data.month)}
+            value={formatMonthYear(data.month)}
             disabled={endDate && data.month > endDate}
           >
-            {formatDateToMonthYear(data.month)}
+            {formatMonthYear(data.month)}
           </option>
         ))}
       </select>
@@ -38,17 +34,17 @@ export function DatePickerComponent(props: DatePickerProps) {
       <select
         name=""
         id=""
-        value={formatDateToMonthYear(endDate)}
+        value={formatMonthYear(endDate)}
         onChange={(e) => onEndDateChange(new Date(e.target.value))}
         className="p-3 m-3 rounded-lg"
       >
         {data.map((data) => (
           <option
-            key={formatDateToMonthYear(data.month)}
-            value={formatDateToMonthYear(data.month)}
+            key={formatMonthYear(data.month)}
+            value={formatMonthYear(data.month)}
             disabled={startDate && data.month < startDate}
           >
-            {formatDateToMonthYear(data.month)}
+            {formatMonthYear(data.month)}
           </option>
         ))}
       </select>
