@@ -8,9 +8,9 @@ interface ButtonProps {
 const getButtonColor = (color: string) => {
   switch (color) {
     case "gray":
-      return "bg-gray-50 text-blue-700";
+      return "bg-gray-50 text-blue-700 hover:bg-gray-300";
     case "indigo":
-      return "bg-indigo-500 text-white";
+      return "bg-indigo-500 text-white hover:bg-indigo-900";
   }
 };
 
