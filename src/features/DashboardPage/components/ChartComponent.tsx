@@ -12,9 +12,8 @@ import {
   ChartOptions,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-
-import { DatePickerData } from "@/features/DashboardPage/data";
-import { NumberFormatter } from "../utils/numberFormatter";
+import { DatePickerData } from "../data";
+import { formatMonthShort, formatMonthYear, NumberFormatter } from "@/utils";
 
 ChartJS.register(
   LineElement,
@@ -33,48 +32,30 @@ type ChartComponentProps = {
 };
 
 export function ChartComponent({ startDate, endDate }: ChartComponentProps) {
-  const startMonth = startDate
-    ? startDate.toLocaleString("default", { month: "long", year: "numeric" })
-    : undefined;
-  const endMonth = endDate
-    ? endDate.toLocaleString("default", { month: "long", year: "numeric" })
-    : undefined;
+  const startMonth = startDate ? formatMonthYear(startDate) : undefined;
+
+  const endMonth = endDate ? formatMonthYear(endDate) : undefined;
 
   const filteredData = DatePickerData.filter((dataItem) => {
-    const formattedDataMonth = dataItem.month.toLocaleString("default", {
-      month: "long",
-      year: "numeric",
-    });
+    const formattedDataMonth = formatMonthYear(dataItem.month);
 
     const currentIndex = DatePickerData.findIndex((item) => {
-      // Format item.month to a string for comparison
-      const formattedItemMonth = item.month.toLocaleString("default", {
-        month: "long",
-        year: "numeric",
-      });
+      const formattedItemMonth = formatMonthYear(item.month);
 
-      return formattedItemMonth === formattedDataMonth; // Add this return statement
+      return formattedItemMonth === formattedDataMonth;
     });
 
     const startIndex =
       startMonth !== undefined
         ? DatePickerData.findIndex(
-            (item) =>
-              item.month.toLocaleString("default", {
-                month: "long",
-                year: "numeric",
-              }) === startMonth
+            (item) => formatMonthYear(item.month) === startMonth
           )
         : -1; // Default to -1 if startMonth is undefined
 
     const endIndex =
       endMonth !== undefined
         ? DatePickerData.findIndex(
-            (item) =>
-              item.month.toLocaleString("default", {
-                month: "long",
-                year: "numeric",
-              }) === endMonth
+            (item) => formatMonthYear(item.month) === endMonth
           )
         : DatePickerData.length;
 
@@ -82,9 +63,8 @@ export function ChartComponent({ startDate, endDate }: ChartComponentProps) {
   });
 
   // X - axis lable
-
   const labels = filteredData.map((data) => {
-    return data.month.toLocaleString("default", { month: "short" });
+    return formatMonthShort(data.month);
   });
 
   // Data displayed on chart
