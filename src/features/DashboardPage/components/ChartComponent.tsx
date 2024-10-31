@@ -3,6 +3,7 @@ import {
   LinearScale,
   PointElement,
   LineElement,
+  BarElement,
   Title,
   Tooltip,
   Legend,
@@ -10,13 +11,18 @@ import {
   TooltipItem,
   CategoryScale,
   ChartOptions,
+  ChartData,
+  BarController,
 } from "chart.js";
-import { Line } from "react-chartjs-2";
+import { Chart } from "react-chartjs-2";
 import { DatePickerData } from "../data";
 import { formatMonthShort, formatMonthYear, NumberFormatter } from "@/utils";
+import { useState } from "react";
 
 ChartJS.register(
   LineElement,
+  BarElement,
+  BarController,
   LinearScale,
   PointElement,
   Title,
@@ -32,6 +38,10 @@ type ChartComponentProps = {
 };
 
 export function ChartComponent({ startDate, endDate }: ChartComponentProps) {
+  const [clickedPointIndex, setClickedPointIndex] = useState<number | null>(
+    null
+  );
+
   const startMonth = startDate ? formatMonthYear(startDate) : undefined;
 
   const endMonth = endDate ? formatMonthYear(endDate) : undefined;
@@ -68,24 +78,51 @@ export function ChartComponent({ startDate, endDate }: ChartComponentProps) {
   });
 
   // Data displayed on chart
-  const datasets = filteredData.map((data) => data.total);
+  // const datasets = filteredData.map((data) => data.total);
+  const lineData = filteredData.map((data) => data.total);
+  const barData = lineData.map((value, index) =>
+    index === clickedPointIndex ? value : null
+  );
 
-  const data = {
+  const data: ChartData<"line" | "bar"> = {
     labels: labels,
     datasets: [
       {
         // Title of Graph
+        type: "line" as const,
         label: "Total number of crackers",
-        data: datasets,
+        data: lineData,
         fill: false,
         borderColor: "rgb(75, 192, 192)",
         tension: 0.1,
+        backgroundColor: "rgba(52,152,219,0.4)",
+        pointBackgroundColor: (context: { dataIndex: number }) => {
+          return context.dataIndex === clickedPointIndex
+            ? "rgb(100, 100, 255)" // Color for clicked point
+            : "rgb(75, 192, 192)"; // Default color
+        },
+        pointBorderColor: "rgb(75, 192, 192)",
+        pointHoverBackgroundColor: "rgb(255, 99, 132)",
+        pointRadius: (context: { dataIndex: number }) => {
+          return context.dataIndex === clickedPointIndex ? 8 : 4;
+        },
+      },
+      {
+        type: "bar" as const,
+        label: "Clicked Point (Bar)",
+        data: barData as (number | null)[],
+        backgroundColor: "rgba(100, 100, 255, 0.5)",
+        // borderColor: "rgb(255, 99, 132)",
+        borderColor: "transparent",
+        borderRadius: 25,
+        borderWidth: 1,
+        barThickness: 30,
       },
     ],
   };
 
   // Axis configuration
-  const options: ChartOptions<"line"> = {
+  const options: ChartOptions<"line" | "bar"> = {
     scales: {
       y: {
         title: {
@@ -120,12 +157,20 @@ export function ChartComponent({ startDate, endDate }: ChartComponentProps) {
         },
       },
     },
+    onClick: (event, elements) => {
+      if (elements.length) {
+        const index = elements[0].index;
+        setClickedPointIndex((prevIndex) =>
+          prevIndex === index ? null : index
+        );
+      }
+    },
   };
 
   return (
     <>
       <div style={{ width: "1000px", margin: "0 auto" }}>
-        <Line data={data} options={options} />
+        <Chart type="line" data={data} options={options} />
       </div>
     </>
   );
