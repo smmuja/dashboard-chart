@@ -35,9 +35,21 @@ ChartJS.register(
 type ChartComponentProps = {
   startDate?: Date;
   endDate?: Date;
+  setSelectedData: React.Dispatch<
+    React.SetStateAction<{
+      total: number;
+      view: number;
+      click: number;
+      timespent: number;
+    } | null>
+  >;
 };
 
-export function ChartComponent({ startDate, endDate }: ChartComponentProps) {
+export function ChartComponent({
+  startDate,
+  endDate,
+  setSelectedData,
+}: ChartComponentProps) {
   const [clickedPointIndex, setClickedPointIndex] = useState<number | null>(
     null
   );
@@ -163,6 +175,13 @@ export function ChartComponent({ startDate, endDate }: ChartComponentProps) {
         setClickedPointIndex((prevIndex) =>
           prevIndex === index ? null : index
         );
+
+        const dataItem = filteredData[index];
+        if (dataItem) {
+          setSelectedData(dataItem);
+        } else {
+          setSelectedData(null);
+        }
       }
     },
   };
