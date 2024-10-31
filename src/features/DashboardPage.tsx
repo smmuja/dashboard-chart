@@ -7,6 +7,8 @@ import {
 import { useState } from "react";
 import { DatePickerData } from "./DashboardPage/data";
 import { MetricsCard } from "./DashboardPage/components/MetricsCard";
+import { MetricsCardAside } from "./DashboardPage/components/MetricsCardAside";
+import { formatMonthYear } from "@/utils";
 
 export function DashboardPage() {
   const [startDate, setStartDate] = useState<Date | undefined>(
@@ -21,6 +23,7 @@ export function DashboardPage() {
     view: number;
     click: number;
     timespent: number;
+    month: Date;
   } | null>(null);
 
   return (
@@ -35,12 +38,19 @@ export function DashboardPage() {
           />
         </div>
         <MetricsCard data={selectedData} />
-        <div>
+        <div className="flex flex-row w-full bg-gray-100 rounded-xl mt-5 p-3">
+          {/* <div className="flex flex-row w-full "> */}
           <ChartComponent
             setSelectedData={setSelectedData}
             startDate={startDate}
             endDate={endDate}
           />
+          <div>
+            <p>{formatMonthYear(selectedData?.month)}</p>
+
+            <MetricsCardAside data={selectedData} />
+          </div>
+          {/* </div> */}
         </div>
       </DashboardLayout>
     </>
