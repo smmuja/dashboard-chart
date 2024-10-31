@@ -41,6 +41,7 @@ type ChartComponentProps = {
       view: number;
       click: number;
       timespent: number;
+      month: Date;
     } | null>
   >;
 };
