@@ -33,10 +33,8 @@ export function MetricsCardAside({ data }: SelectedDataCardProps) {
 
   return (
     <>
-      <div className="grid grid-rows-4 gap-2">
+      <div className="flex flex-col items-start gap-1 ">
         {metrics.map((metric) => {
-          // const isActive = router.query.chart === metric.key;
-
           const value =
             metric.key === "cracker"
               ? data?.cracker
@@ -51,10 +49,10 @@ export function MetricsCardAside({ data }: SelectedDataCardProps) {
           return (
             <div
               key={metric.key}
-              className={`bg-white m-3 p-2 rounded-xl flex flex-col justify-between gap-5`}
+              className={`bg-white m-1 p-2 rounded-xl flex flex-col justify-between gap-1`}
               onClick={() => handleMetricClick(metric.key as SelectedDataKeys)}
             >
-              <p className="text-xs">{metric.label}</p>
+              <p className="text-xs text-gray-500">{`Total number of ${metric.key}s`}</p>
               <p className="font-medium">{formattedValue}</p>
             </div>
           );
