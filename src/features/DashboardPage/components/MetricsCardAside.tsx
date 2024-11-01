@@ -35,7 +35,7 @@ export function MetricsCardAside({ data }: SelectedDataCardProps) {
     <>
       <div className="grid grid-rows-4 gap-2">
         {metrics.map((metric) => {
-          const isActive = router.query.chart === metric.key;
+          // const isActive = router.query.chart === metric.key;
 
           const value =
             metric.key === "cracker"

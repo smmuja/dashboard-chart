@@ -26,6 +26,25 @@ export function DashboardPage() {
     month: Date;
   } | null>(null);
 
+  const cumulativeData = DatePickerData.reduce(
+    (acc, dataItem) => {
+      const month = dataItem.month;
+      if (
+        (!startDate || month >= startDate) &&
+        (!endDate || month <= endDate)
+      ) {
+        return {
+          total: acc.total + dataItem.total,
+          view: acc.view + dataItem.view,
+          click: acc.click + dataItem.click,
+          timespent: acc.timespent + dataItem.timespent,
+        };
+      }
+      return acc;
+    },
+    { total: 0, view: 0, click: 0, timespent: 0 }
+  );
+
   return (
     <>
       <DashboardLayout>
@@ -37,7 +56,7 @@ export function DashboardPage() {
             onEndDateChange={setEndDate}
           />
         </div>
-        <MetricsCard data={selectedData} />
+        <MetricsCard data={cumulativeData} />
         <div className="flex flex-row w-full bg-gray-100 rounded-xl mt-5 p-3">
           {/* <div className="flex flex-row w-full "> */}
           <ChartComponent
