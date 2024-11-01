@@ -9,7 +9,7 @@ const metrics = [
 ];
 
 type SelectedData = {
-  total: number | null;
+  cracker: number | null;
   view: number | null;
   click: number | null;
   timespent: number | null;
@@ -39,7 +39,7 @@ export function MetricsCardAside({ data }: SelectedDataCardProps) {
 
           const value =
             metric.key === "cracker"
-              ? data?.total
+              ? data?.cracker
               : data?.[metric.key as SelectedDataKeys];
 
           const formattedValue =
