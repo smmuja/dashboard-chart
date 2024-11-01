@@ -47,10 +47,10 @@ export function Sidebar() {
             <p className="text-gray-500">US $39/month ~</p>
 
             <div className="p-3">
-              <Button>
+              <Button width="full">
                 Add Cracker <GoPlus />
               </Button>
-              <Button color="indigo">
+              <Button width="full" color="indigo">
                 Upgrade to Enterprise <MdArrowOutward />
               </Button>
             </div>
