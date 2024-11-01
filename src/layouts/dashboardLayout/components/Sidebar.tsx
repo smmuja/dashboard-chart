@@ -1,4 +1,5 @@
 import { Button, IconLink } from "@/components/base";
+import Link from "next/link";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
 import { GoPlus } from "react-icons/go";
 import { IoCubeOutline } from "react-icons/io5";
@@ -10,8 +11,10 @@ import { SlSettings } from "react-icons/sl";
 export function Sidebar() {
   return (
     <>
-      <div className="w-96 p-5 border rounded-xl bg-blue-50 ">
-        <h1 className="text-3xl">Creativeans</h1>
+      <div className="w-96 p-5 border rounded-xl bg-gradient-to-l from-violet-200 via-violet-100 to-gray-100 ">
+        <Link className="text-3xl" href="/">
+          Creativeans
+        </Link>
 
         <div className="flex flex-col justify-evenly h-screen">
           <div>
