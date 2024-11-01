@@ -3,11 +3,11 @@ import { DashboardLayout } from "@/layouts";
 import {
   DatePickerComponent,
   ViewChartComponent,
-} from "./DashboardPage/components";
+} from "../DashboardPage/components";
 import { useState } from "react";
 import { MetricsData } from "@/data";
 
-export function ViewDashboardPage() {
+export function TrackerPage() {
   const [startDate, setStartDate] = useState<Date | undefined>(
     MetricsData[0].month
   ); // default to first month
