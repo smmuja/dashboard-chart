@@ -34,7 +34,7 @@ ChartJS.register(
 );
 
 type SelectedDataProps = {
-  total: number | null;
+  cracker: number | null;
   view: number | null;
   click: number | null;
   timespent: number | null;
@@ -46,7 +46,7 @@ type ChartComponentProps = {
   endDate?: Date;
   setSelectedData: React.Dispatch<
     React.SetStateAction<{
-      total: number;
+      cracker: number;
       view: number;
       click: number;
       timespent: number;
@@ -62,7 +62,8 @@ export function ChartComponent({
 }: ChartComponentProps) {
   const router = useRouter();
 
-  const selectedMetric = router.query.chart as keyof SelectedDataProps;
+  const selectedMetric =
+    (router.query.chart as keyof SelectedDataProps) || "cracker"; // default to cracker when no metric card selected
 
   const [clickedPointIndex, setClickedPointIndex] = useState<number | null>(
     null
