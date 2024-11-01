@@ -5,17 +5,17 @@ import {
   ChartComponent,
 } from "./DashboardPage/components";
 import { useState } from "react";
-import { DatePickerData } from "./DashboardPage/data";
+import { MetricsData } from "@/data";
 import { MetricsCard } from "./DashboardPage/components/MetricsCard";
 import { MetricsCardAside } from "./DashboardPage/components/MetricsCardAside";
 import { formatMonthYear } from "@/utils";
 
 export function DashboardPage() {
   const [startDate, setStartDate] = useState<Date | undefined>(
-    DatePickerData[0].month
+    MetricsData[0].month
   ); // default to first month
   const [endDate, setEndDate] = useState<Date | undefined>(
-    DatePickerData[DatePickerData.length - 1].month
+    MetricsData[MetricsData.length - 1].month
   ); // default to last month
 
   const [selectedData, setSelectedData] = useState<{
@@ -26,7 +26,7 @@ export function DashboardPage() {
     month: Date;
   } | null>(null);
 
-  const cumulativeData = DatePickerData.reduce(
+  const cumulativeData = MetricsData.reduce(
     (acc, dataItem) => {
       const month = dataItem.month;
       if (

@@ -15,7 +15,7 @@ import {
   BarController,
 } from "chart.js";
 import { Chart } from "react-chartjs-2";
-import { DatePickerData } from "../data";
+import { MetricsData } from "@/data";
 import { formatMonthShort, formatMonthYear, NumberFormatter } from "@/utils";
 import { useState } from "react";
 import { useRouter } from "next/router";
@@ -73,10 +73,10 @@ export function ChartComponent({
 
   const endMonth = endDate ? formatMonthYear(endDate) : undefined;
 
-  const filteredData = DatePickerData.filter((dataItem) => {
+  const filteredData = MetricsData.filter((dataItem) => {
     const formattedDataMonth = formatMonthYear(dataItem.month);
 
-    const currentIndex = DatePickerData.findIndex((item) => {
+    const currentIndex = MetricsData.findIndex((item) => {
       const formattedItemMonth = formatMonthYear(item.month);
 
       return formattedItemMonth === formattedDataMonth;
@@ -84,17 +84,17 @@ export function ChartComponent({
 
     const startIndex =
       startMonth !== undefined
-        ? DatePickerData.findIndex(
+        ? MetricsData.findIndex(
             (item) => formatMonthYear(item.month) === startMonth
           )
         : -1; // Default to -1 if startMonth is undefined
 
     const endIndex =
       endMonth !== undefined
-        ? DatePickerData.findIndex(
+        ? MetricsData.findIndex(
             (item) => formatMonthYear(item.month) === endMonth
           )
-        : DatePickerData.length;
+        : MetricsData.length;
 
     return currentIndex >= startIndex && currentIndex <= endIndex;
   });

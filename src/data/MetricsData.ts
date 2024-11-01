@@ -1,4 +1,4 @@
-export const DatePickerData = [
+export const MetricsData = [
   {
     month: new Date("2023-11-01"),
     cracker: 125000,
@@ -30,14 +30,14 @@ export const DatePickerData = [
   {
     month: new Date("2024-03-01"),
     cracker: 155000,
-    view: 100500,
+    view: 200500,
     click: 70000,
     timespent: 120,
   },
   {
     month: new Date("2024-04-01"),
     cracker: 175000,
-    view: 100500,
+    view: 400500,
     click: 15000,
     timespent: 420,
   },
@@ -58,7 +58,7 @@ export const DatePickerData = [
   {
     month: new Date("2024-07-01"),
     cracker: 155000,
-    view: 100500,
+    view: 300500,
     click: 55000,
     timespent: 180,
   },
