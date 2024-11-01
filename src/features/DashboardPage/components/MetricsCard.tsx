@@ -1,5 +1,9 @@
 import { minuteSecondFormat, NumberFormatter } from "@/utils";
 import { useRouter } from "next/router";
+import { FaEye } from "react-icons/fa";
+import { FaArrowPointer } from "react-icons/fa6";
+import { FiTarget } from "react-icons/fi";
+import { LuClock4 } from "react-icons/lu";
 
 const metrics = [
   { label: "Total Cackers", key: "cracker" },
@@ -31,6 +35,21 @@ export function MetricsCard({ data }: SelectedDataCardProps) {
     });
   };
 
+  const getIcon = (key: string) => {
+    switch (key) {
+      case "cracker":
+        return <FiTarget />;
+      case "view":
+        return <FaEye />;
+      case "click":
+        return <FaArrowPointer />;
+      case "timespent":
+        return <LuClock4 />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <>
       <div className="grid grid-cols-4 gap-5">
@@ -52,16 +71,25 @@ export function MetricsCard({ data }: SelectedDataCardProps) {
             <div
               key={metric.key}
               className={`${
-                isActive ? "bg-indigo-100" : "bg-gray-100"
-              }  p-5 rounded-xl hover:cursor-pointer`}
+                isActive
+                  ? "bg-gradient-to-b from-violet-200 via-violet-100 to-gray-100z"
+                  : "bg-gray-100"
+              } shadow-md p-5 gap-5 rounded-xl hover:cursor-pointer flex flex-col justify-between`}
               onClick={() => handleMetricClick(metric.key as SelectedDataKeys)}
             >
-              <p>{metric.label}</p>
-              {/* <p>{data?.total}</p>
-              <p>{data?.view}</p>
-              <p>{data?.click}</p>
-              <p>{data?.timespent}</p> */}
-              <p>{formattedValue}</p>
+              <p className="text-sm text-gray-700">{metric.label}</p>
+              <div className="flex flex-row justify-between">
+                <p className="font-semibold">{formattedValue}</p>
+                <div
+                  className={`${
+                    isActive
+                      ? "bg-white text-black "
+                      : "bg-gray-300 text-white "
+                  }w-fit p-3 rounded-xl`}
+                >
+                  {getIcon(metric.key)}
+                </div>
+              </div>
             </div>
           );
         })}
