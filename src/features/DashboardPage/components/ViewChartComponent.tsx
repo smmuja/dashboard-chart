@@ -1,7 +1,7 @@
 //
 import { Line } from "react-chartjs-2";
 import { useChart } from "@/hooks";
-import { DatePickerData } from "../data";
+import { MetricsData } from "@/data";
 
 type ChartComponentProps = {
   startDate?: Date;
@@ -13,7 +13,7 @@ export function ViewChartComponent({
   startDate,
   endDate,
 }: ChartComponentProps) {
-  const totalView = DatePickerData.map((data) => data.view);
+  const totalView = MetricsData.map((data) => data.view);
 
   const label = "View chart";
   // const datasets = totalView;
