@@ -18,6 +18,7 @@ import { Chart } from "react-chartjs-2";
 import { DatePickerData } from "../data";
 import { formatMonthShort, formatMonthYear, NumberFormatter } from "@/utils";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 ChartJS.register(
   LineElement,
@@ -31,6 +32,14 @@ ChartJS.register(
   CategoryScale,
   Filler
 );
+
+type SelectedDataProps = {
+  total: number | null;
+  view: number | null;
+  click: number | null;
+  timespent: number | null;
+  month: Date;
+};
 
 type ChartComponentProps = {
   startDate?: Date;
@@ -51,6 +60,10 @@ export function ChartComponent({
   endDate,
   setSelectedData,
 }: ChartComponentProps) {
+  const router = useRouter();
+
+  const selectedMetric = router.query.chart as keyof SelectedDataProps;
+
   const [clickedPointIndex, setClickedPointIndex] = useState<number | null>(
     null
   );
@@ -91,8 +104,11 @@ export function ChartComponent({
   });
 
   // Data displayed on chart
-  // const datasets = filteredData.map((data) => data.total);
-  const lineData = filteredData.map((data) => data.total);
+  // const lineData = filteredData.map((data) => data.total);
+
+  // to show metrics conditionally based on metrics card clicked
+  const lineData = filteredData.map((data) => data[selectedMetric] as number);
+
   const barData = lineData.map((value, index) =>
     index === clickedPointIndex ? value : null
   );
@@ -103,7 +119,7 @@ export function ChartComponent({
       {
         // Title of Graph
         type: "line" as const,
-        label: "Total number of crackers",
+        label: `Total number of ${selectedMetric}s`,
         data: lineData,
         fill: false,
         borderColor: "rgb(75, 192, 192)",
