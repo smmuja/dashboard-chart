@@ -1,5 +1,33 @@
 export const MetricsData = [
   {
+    month: new Date("2023-07-01"),
+    cracker: 125000,
+    view: 200500,
+    click: 30000,
+    timespent: 120,
+  },
+  {
+    month: new Date("2023-08-01"),
+    cracker: 125000,
+    view: 200500,
+    click: 30000,
+    timespent: 120,
+  },
+  {
+    month: new Date("2023-09-01"),
+    cracker: 125000,
+    view: 200500,
+    click: 30000,
+    timespent: 120,
+  },
+  {
+    month: new Date("2023-10-01"),
+    cracker: 125000,
+    view: 200500,
+    click: 30000,
+    timespent: 120,
+  },
+  {
     month: new Date("2023-11-01"),
     cracker: 125000,
     view: 200500,

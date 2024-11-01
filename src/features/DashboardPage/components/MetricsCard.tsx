@@ -4,6 +4,7 @@ import { FaEye } from "react-icons/fa";
 import { FaArrowPointer } from "react-icons/fa6";
 import { FiTarget } from "react-icons/fi";
 import { LuClock4 } from "react-icons/lu";
+import { TfiStatsDown, TfiStatsUp } from "react-icons/tfi";
 
 const metrics = [
   { label: "Total Cackers", key: "cracker" },
@@ -23,9 +24,10 @@ type SelectedDataKeys = keyof SelectedData;
 
 type SelectedDataCardProps = {
   data: SelectedData | null;
+  percentageChange: SelectedData | null;
 };
 
-export function MetricsCard({ data }: SelectedDataCardProps) {
+export function MetricsCard({ data, percentageChange }: SelectedDataCardProps) {
   const router = useRouter();
 
   const handleMetricClick = (metric: SelectedDataKeys) => {
@@ -67,6 +69,13 @@ export function MetricsCard({ data }: SelectedDataCardProps) {
               : value !== null
               ? NumberFormatter(value ?? 0)
               : null;
+
+          // Get the percentage change for each metric
+          const change = percentageChange?.[metric.key as SelectedDataKeys];
+          const formattedChange =
+            change !== null && change !== undefined
+              ? `${change > 0 ? "+" : ""}${change.toFixed(2)}%`
+              : null;
           return (
             <div
               key={metric.key}
@@ -78,8 +87,25 @@ export function MetricsCard({ data }: SelectedDataCardProps) {
               onClick={() => handleMetricClick(metric.key as SelectedDataKeys)}
             >
               <p className="text-sm text-gray-700">{metric.label}</p>
+
               <div className="flex flex-row justify-between">
-                <p className="font-semibold">{formattedValue}</p>
+                <div>
+                  <p className="font-semibold">{formattedValue}</p>
+                  <p
+                    className={`text-xs font-medium flex flex-row my-3 ${
+                      change !== null && change !== undefined && change > 0
+                        ? "text-green-500"
+                        : "text-red-500"
+                    }`}
+                  >
+                    {change !== null && change !== undefined && change > 0 ? (
+                      <TfiStatsUp />
+                    ) : (
+                      <TfiStatsDown />
+                    )}{" "}
+                    {formattedChange && <p>{formattedChange} from last year</p>}
+                  </p>
+                </div>
                 <div
                   className={`${
                     isActive
