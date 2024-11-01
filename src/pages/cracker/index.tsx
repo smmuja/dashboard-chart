@@ -1,5 +1,5 @@
-import { TimespentDashboardPage } from "@/features";
+import { CrackerPage } from "@/features";
 
 export default function Cracker() {
-  return <TimespentDashboardPage />;
+  return <CrackerPage />;
 }

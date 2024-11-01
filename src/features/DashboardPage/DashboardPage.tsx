@@ -1,13 +1,10 @@
 import { DashboardLayout } from "@/layouts";
 
-import {
-  DatePickerComponent,
-  ChartComponent,
-} from "./DashboardPage/components";
+import { DatePickerComponent, ChartComponent } from "./components";
 import { useState } from "react";
 import { MetricsData } from "@/data";
-import { MetricsCard } from "./DashboardPage/components/MetricsCard";
-import { MetricsCardAside } from "./DashboardPage/components/MetricsCardAside";
+import { MetricsCard } from "./components/MetricsCard";
+import { MetricsCardAside } from "./components/MetricsCardAside";
 import { formatMonthYear } from "@/utils";
 
 export function DashboardPage() {

@@ -1,11 +1,11 @@
 import { DashboardLayout } from "@/layouts";
 
-import { DatePickerComponent } from "./DashboardPage/components";
+import { DatePickerComponent } from "../DashboardPage/components";
 import { useState } from "react";
 import { MetricsData } from "@/data";
-import { TimespentChartComponent } from "./DashboardPage/components";
+import { TimespentChartComponent } from "../DashboardPage/components";
 
-export function TimespentDashboardPage() {
+export function CrackerPage() {
   const [startDate, setStartDate] = useState<Date | undefined>(
     MetricsData[0].month
   ); // default to first month
