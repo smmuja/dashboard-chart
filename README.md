@@ -1,5 +1,7 @@
 # Dashboard Chart
 
+[http://dashboard-chart.smmuja.com](http://dashboard-chart.smmuja.com)
+
 ## Overview
 
 The Dashboard Chart is a web application built with Next.js and TypeScript, designed to provide insightful metrics through visually appealing charts. It utilizes Chart.js for data visualization and Tailwind CSS for styling, offering a responsive and modern user interface.
@@ -21,6 +23,23 @@ The Dashboard Chart is a web application built with Next.js and TypeScript, desi
 
 ![Preview](public/docs/preview-home.png)
 
+## Folder Structure
+
+The project follows a modular folder structure to ensure scalability and maintainability:
+
+```
+src/
+├── components              (Shared components)
+│   └── base                (Reusable base components like Button, IconLink, etc.)
+├── features                (Feature-specific components for building pages)
+├── layout                  (Layout components, e.g., Header, Footer, Main Layout)
+├── data                    (Static data or mock data files)
+├── utils                   (Utility functions and helper modules)
+├── hooks                   (Custom React hooks for shared logic)
+└── assets                  (Images, icons, and other static assets)
+
+```
+
 ## Metrics Chart
 
 The metrics chart displays the following data points:
@@ -29,6 +48,16 @@ The metrics chart displays the following data points:
 - **View**: The total views received.
 - **Click**: The total clicks on the dashboard.
 - **Time Spent**: The total time spent interacting with the dashboard.
+
+## Future Improvements
+
+### Authentication
+
+- **Login/Register Functionality**: Adding user authentication to allow users to create accounts and log in to view personalized data or save their settings.
+
+### Enhanced Data Filtering
+
+- **Advanced Filtering Options**: Allow users to filter data by additional parameters such as categories or custom date ranges (Calendar library)
 
 ## How to Run Locally
 
