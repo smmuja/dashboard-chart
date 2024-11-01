@@ -45,6 +45,38 @@ export function DashboardPage() {
     { cracker: 0, view: 0, click: 0, timespent: 0 }
   );
 
+  const previousData = MetricsData.reduce(
+    (acc, dataItem) => {
+      const month = dataItem.month;
+      if (startDate && month < startDate) {
+        return {
+          cracker: acc.cracker + dataItem.cracker,
+          view: acc.view + dataItem.view,
+          click: acc.click + dataItem.click,
+          timespent: acc.timespent + dataItem.timespent,
+        };
+      }
+      return acc;
+    },
+    { cracker: 0, view: 0, click: 0, timespent: 0 }
+  );
+
+  const calculatePercentageChange = (current: number, previous: number) =>
+    previous > 0 ? ((current - previous) / previous) * 100 : null;
+
+  const percentageChange = {
+    cracker: calculatePercentageChange(
+      cumulativeData.cracker,
+      previousData.cracker
+    ),
+    view: calculatePercentageChange(cumulativeData.view, previousData.view),
+    click: calculatePercentageChange(cumulativeData.click, previousData.click),
+    timespent: calculatePercentageChange(
+      cumulativeData.timespent,
+      previousData.timespent
+    ),
+  };
+
   return (
     <>
       <DashboardLayout>
@@ -56,9 +88,11 @@ export function DashboardPage() {
             onEndDateChange={setEndDate}
           />
         </div>
-        <MetricsCard data={cumulativeData} />
+        <MetricsCard
+          data={cumulativeData}
+          percentageChange={percentageChange}
+        />
         <div className="flex flex-row w-full bg-gray-100 rounded-xl mt-5 p-3">
-          {/* <div className="flex flex-row w-full "> */}
           <ChartComponent
             setSelectedData={setSelectedData}
             startDate={startDate}
@@ -73,7 +107,6 @@ export function DashboardPage() {
 
             <MetricsCardAside data={selectedData} />
           </div>
-          {/* </div> */}
         </div>
       </DashboardLayout>
     </>
