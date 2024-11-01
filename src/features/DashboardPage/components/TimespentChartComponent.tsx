@@ -1,7 +1,7 @@
 //
 import { Line } from "react-chartjs-2";
 import { useChart } from "@/hooks";
-import { DatePickerData } from "../data";
+import { MetricsData } from "@/data";
 
 type ChartComponentProps = {
   startDate?: Date;
@@ -13,7 +13,7 @@ export function TimespentChartComponent({
   startDate,
   endDate,
 }: ChartComponentProps) {
-  const timeSpent = DatePickerData.map((data) => data.timespent);
+  const timeSpent = MetricsData.map((data) => data.timespent);
 
   const label = "Timespent chart";
   // const datasets = totalView;

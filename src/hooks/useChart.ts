@@ -12,7 +12,7 @@ import {
   ChartOptions,
 } from "chart.js";
 
-import { DatePickerData } from "@/features/DashboardPage/data";
+import { MetricsData } from "@/data";
 import { NumberFormatter } from "@/utils";
 
 ChartJS.register(
@@ -46,13 +46,13 @@ export function useChart({
     ? endDate.toLocaleString("default", { month: "long", year: "numeric" })
     : undefined;
 
-  const filteredData = DatePickerData.filter((dataItem) => {
+  const filteredData = MetricsData.filter((dataItem) => {
     const formattedDataMonth = dataItem.month.toLocaleString("default", {
       month: "long",
       year: "numeric",
     });
 
-    const currentIndex = DatePickerData.findIndex((item) => {
+    const currentIndex = MetricsData.findIndex((item) => {
       // Format item.month to a string for comparison
       const formattedItemMonth = item.month.toLocaleString("default", {
         month: "long",
@@ -64,7 +64,7 @@ export function useChart({
 
     const startIndex =
       startMonth !== undefined
-        ? DatePickerData.findIndex(
+        ? MetricsData.findIndex(
             (item) =>
               item.month.toLocaleString("default", {
                 month: "long",
@@ -75,14 +75,14 @@ export function useChart({
 
     const endIndex =
       endMonth !== undefined
-        ? DatePickerData.findIndex(
+        ? MetricsData.findIndex(
             (item) =>
               item.month.toLocaleString("default", {
                 month: "long",
                 year: "numeric",
               }) === endMonth
           )
-        : DatePickerData.length;
+        : MetricsData.length;
 
     return currentIndex >= startIndex && currentIndex <= endIndex;
   });

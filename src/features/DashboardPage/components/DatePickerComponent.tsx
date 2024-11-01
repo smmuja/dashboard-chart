@@ -1,4 +1,4 @@
-import { DatePickerData as data } from "@/features/DashboardPage/data";
+import { MetricsData as data } from "@/data";
 import { formatMonthYear } from "@/utils";
 
 type DatePickerProps = {
