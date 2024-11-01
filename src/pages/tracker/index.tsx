@@ -1,5 +1,5 @@
-import { ViewDashboardPage } from "@/features/ViewDashboardPage";
+import { TrackerPage } from "@/features/TrackerPage";
 
 export default function Tracker() {
-  return <ViewDashboardPage />;
+  return <TrackerPage />;
 }
