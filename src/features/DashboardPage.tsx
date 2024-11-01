@@ -19,7 +19,7 @@ export function DashboardPage() {
   ); // default to last month
 
   const [selectedData, setSelectedData] = useState<{
-    total: number;
+    cracker: number;
     view: number;
     click: number;
     timespent: number;
@@ -34,7 +34,7 @@ export function DashboardPage() {
         (!endDate || month <= endDate)
       ) {
         return {
-          total: acc.total + dataItem.total,
+          cracker: acc.cracker + dataItem.cracker,
           view: acc.view + dataItem.view,
           click: acc.click + dataItem.click,
           timespent: acc.timespent + dataItem.timespent,
@@ -42,7 +42,7 @@ export function DashboardPage() {
       }
       return acc;
     },
-    { total: 0, view: 0, click: 0, timespent: 0 }
+    { cracker: 0, view: 0, click: 0, timespent: 0 }
   );
 
   return (
@@ -65,7 +65,11 @@ export function DashboardPage() {
             endDate={endDate}
           />
           <div>
-            <p>{formatMonthYear(selectedData?.month)}</p>
+            <p>
+              {selectedData?.month
+                ? formatMonthYear(selectedData?.month)
+                : "Month Year"}
+            </p>
 
             <MetricsCardAside data={selectedData} />
           </div>
