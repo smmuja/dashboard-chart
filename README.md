@@ -1,3 +1,44 @@
+# Dashboard Chart
+
+## Overview
+
+The Dashboard Chart is a web application built with Next.js and TypeScript, designed to provide insightful metrics through visually appealing charts. It utilizes Chart.js for data visualization and Tailwind CSS for styling, offering a responsive and modern user interface.
+
+## Tech Stack
+
+- **Next.js**: A React framework for building server-rendered applications.
+- **TypeScript**: A superset of JavaScript that adds static types for better tooling and error checking.
+- **Chart.js**: A powerful library for creating interactive and customizable charts.
+- **Tailwind CSS**: A utility-first CSS framework for rapid UI development.
+
+## Features
+
+- **Dashboard Chart**: Visual representation of various metrics.
+- **Metrics Card**: Select cards based on different metrics for easy comparison.
+- **Date Selection**: View metrics for a specific date or across a defined date range.
+
+## Preview
+
+![Preview](public/docs/preview-home.png)
+
+## Metrics Chart
+
+The metrics chart displays the following data points:
+
+- **Total Cracker**: The total number of crackers used.
+- **View**: The total views received.
+- **Click**: The total clicks on the dashboard.
+- **Time Spent**: The total time spent interacting with the dashboard.
+
+## How to Run Locally
+
+### Prerequisites
+
+Ensure you have the following installed on your machine:
+
+- **Node.js**: Download and install from [nodejs.org](https://nodejs.org/).
+- **Yarn**: Package manager to manage dependencies. Install it from [yarnpkg.com](https://yarnpkg.com/).
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
 
 ## Getting Started
