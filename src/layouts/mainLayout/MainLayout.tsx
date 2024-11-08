@@ -11,7 +11,7 @@ export function MainLayout(props: MainLayoutProps) {
     <>
       <div className="flex flex-row p-3 m-3 gap-3">
         <Sidebar />
-        <div>{children}</div>
+        <div className="md:w-4/6">{children}</div>
       </div>
     </>
   );
