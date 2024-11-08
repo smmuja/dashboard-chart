@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { DashboardHeader } from "@/layouts/dashboardLayout/components";
+import { DashboardHeader } from "@/layouts/dashboardLayout";
 import { Sidebar } from "@/layouts/components";
 
 export interface DashboardLayoutProps {
