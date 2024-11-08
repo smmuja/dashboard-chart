@@ -1,13 +1,13 @@
-import { DashboardLayout } from "@/layouts";
+import { MainLayout } from "@/layouts";
 
 export function Page404Component() {
   return (
     <>
-      <DashboardLayout>
+      <MainLayout>
         <div className="h-screen flex flex-col text-center justify-center items-center">
           <p className="text-5xl text-gray-500">Nothing found</p>
         </div>
-      </DashboardLayout>
+      </MainLayout>
     </>
   );
 }
