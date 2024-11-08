@@ -11,7 +11,7 @@ export function DashboardLayout(props: DashboardLayoutProps) {
     <>
       <div className="flex flex-row p-3 m-3 gap-3">
         <Sidebar />
-        <div className="w-4/6">
+        <div className="lg:w-4/6">
           <div>
             <DashboardHeader />
           </div>
