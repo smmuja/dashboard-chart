@@ -1,4 +1,4 @@
-import lemonCrackerImage from "@/assets/img/lemon-cracker.png";
 import userDummyImage from "@/assets/img/user-dummy.png";
+import lemonImage from "@/assets/img/lemon.png";
 
-export { lemonCrackerImage, userDummyImage };
+export { userDummyImage, lemonImage };

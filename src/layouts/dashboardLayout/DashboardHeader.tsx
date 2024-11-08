@@ -3,7 +3,7 @@ import { Button } from "@/components";
 import { formatDateDay } from "@/utils";
 import { FaCrown } from "react-icons/fa";
 import { IoMdArrowDropdown, IoMdNotificationsOutline } from "react-icons/io";
-import { lemonCrackerImage, userDummyImage } from "@/assets";
+import { lemonImage, userDummyImage } from "@/assets";
 
 export function DashboardHeader() {
   const currentDate = new Date();
@@ -14,8 +14,8 @@ export function DashboardHeader() {
           <h2 className="text-indigo-400 text-xl font-semibold mb-5">
             Dashboard
           </h2>
-          <div className="flex flex-row gap-3 my-10">
-            <Image src={lemonCrackerImage} alt="Lemon cracker" />
+          <div className="flex flex-row gap-3 my-10 items-center">
+            <Image src={lemonImage} alt="Lemon image" className="w-20" />
             <div>
               <p className="text-sm text-gray-400">
                 ABC Cracker &gt; Lemon Cracker
@@ -25,11 +25,11 @@ export function DashboardHeader() {
               </p>
             </div>
           </div>
-          <div className="my-3">
+          {/* <div className="my-3">
             <p className="text-sm font-medium text-gray-700">
               Here will be some text
             </p>
-          </div>
+          </div> */}
         </div>
         <div className="flex flex-row items-center gap-3 text-sm">
           <Button color="grayBlack" radius="roundedFull">
