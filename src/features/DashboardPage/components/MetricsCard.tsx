@@ -91,29 +91,33 @@ export function MetricsCard({ data, percentageChange }: SelectedDataCardProps) {
               <div className="flex flex-row justify-between">
                 <div>
                   <p className="font-semibold">{formattedValue}</p>
-                  <p
-                    className={`text-xs font-medium flex flex-row my-3 ${
-                      change !== null && change !== undefined && change > 0
-                        ? "text-green-500"
-                        : "text-red-500"
-                    }`}
-                  >
-                    {change !== null && change !== undefined && change > 0 ? (
-                      <TfiStatsUp />
-                    ) : (
-                      <TfiStatsDown />
-                    )}{" "}
-                    {formattedChange && <p>{formattedChange} from last year</p>}
-                  </p>
-                </div>
-                <div
-                  className={`${
-                    isActive
-                      ? "bg-white text-black "
-                      : "bg-gray-300 text-white "
-                  }w-fit p-3 rounded-xl`}
-                >
-                  {getIcon(metric.key)}
+                  <div className="flex flex-row items-end">
+                    <p
+                      className={`text-xs font-medium flex flex-row my-3 ${
+                        change !== null && change !== undefined && change > 0
+                          ? "text-green-500"
+                          : "text-red-500"
+                      }`}
+                    >
+                      {change !== null && change !== undefined && change > 0 ? (
+                        <TfiStatsUp />
+                      ) : (
+                        <TfiStatsDown />
+                      )}{" "}
+                      {formattedChange && (
+                        <p>{formattedChange} from last year</p>
+                      )}
+                    </p>
+                    <div
+                      className={`${
+                        isActive
+                          ? "bg-white text-black "
+                          : "bg-gray-300 text-white "
+                      }w-fit p-3 rounded-xl`}
+                    >
+                      {getIcon(metric.key)}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
