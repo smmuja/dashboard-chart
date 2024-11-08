@@ -89,9 +89,9 @@ export function MetricsCard({ data, percentageChange }: SelectedDataCardProps) {
               <p className="text-sm text-gray-700">{metric.label}</p>
 
               <div className="flex flex-row justify-between">
-                <div>
+                <div className="w-full">
                   <p className="font-semibold">{formattedValue}</p>
-                  <div className="flex flex-row items-end">
+                  <div className="flex flex-row items-end justify-between gap-5">
                     <p
                       className={`text-xs font-medium flex flex-row my-3 ${
                         change !== null && change !== undefined && change > 0
