@@ -123,7 +123,7 @@ export function ChartComponent({
         label: `Total number of ${selectedMetric}s`,
         data: lineData,
         fill: false,
-        borderColor: "rgb(75, 192, 192)",
+        borderColor: "rgba(75, 192, 192, 0.2)",
         tension: 0.1,
         backgroundColor: "rgba(52,152,219,0.4)",
         pointBackgroundColor: (context: { dataIndex: number }) => {
@@ -146,7 +146,7 @@ export function ChartComponent({
         borderColor: "transparent",
         borderRadius: 25,
         borderWidth: 1,
-        barThickness: 30,
+        barThickness: 50,
       },
     ],
   };
